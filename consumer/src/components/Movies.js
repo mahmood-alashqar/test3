@@ -45,6 +45,7 @@ export class Movies extends Component {
     })
   }
   render() {
+    console.log(process.env.REACT_APP_TEST);
     const styling = {
       width: '20%',
       hight: '50%',

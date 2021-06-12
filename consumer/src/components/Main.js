@@ -14,7 +14,7 @@ export class Main extends Component {
   }
   componentDidMount = async () => {
     const getRequest = await axios.get(`${this.state.API}/main`);
-    console.log(process.env.REACT_APP_SERVER);
+    console.log(process.env.REACT_APP_TEST);
     this.setState({
       Movies: getRequest.data
     })
@@ -28,7 +28,6 @@ export class Main extends Component {
       hight: '50%',
       borderRadius: '20px'
     }
-    console.log(this.state.Movies);
     return (
       this.state.Movies.map((data, idx) => {
         return (<div key={idx}>
