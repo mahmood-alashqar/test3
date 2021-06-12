@@ -27,7 +27,36 @@ async function getTheFavMovies(req, res) {
     res.send(data);
   })
 }
+
+async function deleteItem(req, res) {
+  ModelTheMovie.remove({ slug: req.params.slug }, (error, data) => {
+    if (error) {
+      res.send(error);
+    }
+    else {
+      ModelTheMovie.find({}, (error, data) => {
+        res.send(data);
+      })
+    }
+  })
+}
+async function updateItem(req, res) {
+  const { title, headline } = req.body;
+  const slug = req.params.slug;
+  ModelTheMovie.find({ slug: slug }, (error, data) => {
+    if (error) {
+      res.send(error);
+    }
+    else {
+      data[0].title = title;
+      data[0].headline = headline;
+      data[0].save().then(() => ModelTheMovie.find({}, (error, data) => { res.send(data); }))
+    }
+  })
+}
 module.exports = {
   postTheData,
-  getTheFavMovies
+  getTheFavMovies,
+  deleteItem,
+  updateItem
 }

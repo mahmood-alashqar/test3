@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
+import './style.css';
 
 export class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Movies: [],
-      API: process.env.REACT_APP_SERVER_URL,
-
+      // API: process.env.REACT_APP_SERVER_URL,
     }
   }
   componentDidMount = async () => {
     const getRequest = await axios.get(`http://localhost:8080/main`);
-    console.log(this.state.API);
+    console.log(process.env.REACT_APP_SERVER);
     this.setState({
       Movies: getRequest.data
     })
+  }
+  storeItem = async (item) => {
+    await axios.post(`http://localhost:8080/main/movie`, item);
   }
   render() {
     const styling = {
@@ -33,13 +36,13 @@ export class Main extends Component {
             <Col>
               <Card className="bg-dark text-white">
                 <Card.Img variant="top" src={data.img} style={styling} />
-
                 <Card.Title>{data.title}</Card.Title>
                 <Card.Text>
                   {data.summery}
                 </Card.Text>
                 <Card.Text>{data.headline}</Card.Text>
-
+                <Card.Link href={data.article}>{data.suggested_link_text}</Card.Link>
+                <Button onClick={() => { this.storeItem(data) }} variant="primary">Add To Your List </Button>
               </Card>
             </Col>
           </Row>

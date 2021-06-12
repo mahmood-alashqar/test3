@@ -6,14 +6,14 @@ export class Header extends Component {
   render() {
     return (
       <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
           <Container>
-            <Navbar.Brand href="#main">Movie Show</Navbar.Brand>
+            <Navbar.Brand href="/">Movie Show</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#main">Movies</Nav.Link>
-                <Nav.Link href="#movie">Your Movie</Nav.Link>
+                <Nav.Link href="/">Movies</Nav.Link>
+                <Nav.Link href="/movie">Your Movie</Nav.Link>
                 {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

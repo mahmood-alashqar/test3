@@ -27,6 +27,8 @@ app.get('/', (req, res) => {
 app.get('/main', getAllData);
 app.post('/main/movie', MOVIE.postTheData);
 app.get('/main/movie', MOVIE.getTheFavMovies);
+app.delete('/main/movie/:slug', MOVIE.deleteItem);
+app.put('/main/movie/:slug', MOVIE.updateItem);
 
 
 app.listen(PORT, () => {
