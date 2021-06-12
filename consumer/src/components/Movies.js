@@ -8,6 +8,7 @@ export class Movies extends Component {
     super(props);
     this.state = {
       myMovies: [],
+      API: process.env.REACT_APP_SERVER_URL,
       slug: '',
       title: '',
       headline: '',
@@ -16,13 +17,13 @@ export class Movies extends Component {
     }
   }
   componentDidMount = async () => {
-    const getRequest = await axios.get(`http://localhost:8080/main/movie`);
+    const getRequest = await axios.get(`${this.state.API}/main/movie`);
     this.setState({
       myMovies: getRequest.data
     })
   }
   deleteItem = async (slug) => {
-    const deleteRequest = await axios.delete(`http://localhost:8080/main/movie/${slug}`)
+    const deleteRequest = await axios.delete(`${this.state.API}/main/movie/${slug}`)
     this.setState({
       myMovies: deleteRequest.data
     })
@@ -36,7 +37,7 @@ export class Movies extends Component {
       title: this.state.title,
       headline: this.state.headline
     }
-    const updateRequest = await axios.put(`http://localhost:8080/main/movie/${this.state.slug}`, body);
+    const updateRequest = await axios.put(`${this.state.API}/main/movie/${this.state.slug}`, body);
     console.log('req', updateRequest);
     this.setState({
       myMovies: updateRequest.data,

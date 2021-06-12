@@ -9,18 +9,18 @@ export class Main extends Component {
     super(props);
     this.state = {
       Movies: [],
-      // API: process.env.REACT_APP_SERVER_URL,
+      API: process.env.REACT_APP_SERVER_URL,
     }
   }
   componentDidMount = async () => {
-    const getRequest = await axios.get(`http://localhost:8080/main`);
+    const getRequest = await axios.get(`${this.state.API}/main`);
     console.log(process.env.REACT_APP_SERVER);
     this.setState({
       Movies: getRequest.data
     })
   }
   storeItem = async (item) => {
-    await axios.post(`http://localhost:8080/main/movie`, item);
+    await axios.post(`${this.state.API}/main/movie`, item);
   }
   render() {
     const styling = {
